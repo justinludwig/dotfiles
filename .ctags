@@ -1,0 +1,8 @@
+--exclude=.svn
+--exclude=test
+--exclude=test-*
+--langdef=js
+--langmap=js:.js
+--regex-js=/([A-Za-z0-9_$]+)[ \t]*[:=][ \t]*\{/\1/,object/
+--regex-js=/([A-Za-z0-9_$]+)[ \t]*[:=][ \t]*function[ \t]*\(/\1/,function/
+--regex-js=/function[ \t]+([A-Za-z0-9_$]+)[ \t]*\(([^)])\)/\1/,function/
