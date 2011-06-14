@@ -133,6 +133,7 @@ abs-menulinks = svn:eol-style=native
 *.gif = svn:mime-type=image/gif
 *.grm = svn:eol-style=native
 *.groovy = svn:eol-style=native; svn:mime-type=text/x-groovy
+*.gsp = svn:eol-style=native; svn:mime-type=text/x-gsp
 *.gz = svn:mime-type=application/x-gzip
 *.h = svn:eol-style=native
 *.htc = svn:eol-style=native
@@ -150,6 +151,7 @@ abs-menulinks = svn:eol-style=native
 *.jst = svn:eol-style=native; svn:mime-type=text/x-jst
 *.junit = svn:eol-style=native
 *.jx = svn:eol-style=native
+*.lzma = svn:mime-type=application/x-lzma
 *.m = svn:eol-style=native
 *.m4 = svn:eol-style=native
 *.manifest = svn:eol-style=native
@@ -184,8 +186,9 @@ abs-menulinks = svn:eol-style=native
 *.sh = svn:eol-style=native
 *.sql = svn:eol-style=native
 *.svg = svn:eol-style=native
-*.tar = svn:mime-type=application/octet-stream
-*.tgz = svn:mime-type=application/octet-stream
+*.tar = svn:mime-type=application/x-tar
+*.tgz = svn:mime-type=application/x-gtar
+*.tlz = svn:mime-type=application/x-lzma-compressed-tar
 *.tif = svn:mime-type=image/tiff
 *.tiff = svn:mime-type=image/tiff
 *.tld = svn:eol-style=native
