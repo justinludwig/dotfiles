@@ -109,18 +109,21 @@ set -o vi
 alias la='ls -latrh'
 alias lsd='ls -ldh'
 alias ltr='ls -ltrh'
+alias ls3='aws ls --simple --d=/'
 
 alias jl='j --l'
 alias jr='j --r'
 alias js='j --s'
 
 export EDITOR=/usr/bin/vim
-export FIGNORE=.svn,.git
+export FIGNORE=.svn:.git
 export GREP_OPTIONS="--exclude-dir=\.{svn,git}"
 
-export JAVA_HOME=/opt/jdk
-export PATH=$PATH:$JAVA_HOME/bin
+#export JAVA_HOME=/usr/lib/jvm/java-6-sun
+#export PATH=$PATH:$JAVA_HOME/bin
 
 export GRAILS_HOME=/opt/grails
 export PATH=$PATH:$GRAILS_HOME/bin
 
+export EC2_HOME=/opt/ec2-api-tools
+export PATH=$PATH:$EC2_HOME/bin
