@@ -106,6 +106,9 @@ export PATH=$PATH:~/bin
 
 set -o vi
 
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
 alias la='ls -latrh'
 alias lsd='ls -ldh'
 alias ltr='ls -ltrh'
@@ -119,11 +122,11 @@ export EDITOR=/usr/bin/vim
 export FIGNORE=.svn:.git
 export GREP_OPTIONS="--exclude-dir=\.{svn,git}"
 
-#export JAVA_HOME=/usr/lib/jvm/java-6-sun
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
 #export PATH=$PATH:$JAVA_HOME/bin
 
 export GRAILS_HOME=/opt/grails
 export PATH=$PATH:$GRAILS_HOME/bin
 
-export EC2_HOME=/opt/ec2-api-tools
-export PATH=$PATH:$EC2_HOME/bin
+
+
