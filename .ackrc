@@ -1,0 +1,4 @@
+--type-add
+groovy=.groovy
+--type-add
+gsp=.gsp
