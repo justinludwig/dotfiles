@@ -109,6 +109,11 @@ set -o vi
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
+# workaround for 'unable to register window with path' error
+alias gvim='gvim &>/dev/null'
+alias gview='gview &>/dev/null'
+#gvim() { /usr/bin/gvim -f "$@" & true; }
+
 alias la='ls -latrh'
 alias lsd='ls -ldh'
 alias ltr='ls -ltrh'
@@ -122,8 +127,7 @@ export EDITOR=/usr/bin/vim
 export FIGNORE=.svn:.git
 export GREP_OPTIONS="--exclude-dir=\.{svn,git}"
 
-export JAVA_HOME=/usr/lib/jvm/java-6-sun
-#export PATH=$PATH:$JAVA_HOME/bin
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 
 export GRAILS_HOME=/opt/grails
 export PATH=$PATH:$GRAILS_HOME/bin

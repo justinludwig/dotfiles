@@ -1,6 +1,8 @@
 import Data.Map as M
 import XMonad
 import XMonad.Actions.CycleWS
+import XMonad.Config.Desktop
+import XMonad.Config.Gnome
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Grid
 import XMonad.Layout.Master
@@ -14,8 +16,12 @@ import qualified XMonad.StackSet as W
 -- my preferred teminal settings
 myTerminal = "gnome-terminal --hide-menubar"
 
--- automatically manage docks (gnome-panel/dzen/xmobar/etc)
-myManageHook = manageDocks
+-- automatically manage docks/panels
+myManageHook = composeAll ( [ 
+    manageHook gnomeConfig ,
+    className =? "Unity-2d-panel" --> doIgnore,
+    className =? "Unity-2d-launcher" --> doFloat
+    ] )
 
 -- each layout is separated by |||
 -- layout 1: grid w/ master (expand/contract by 3/100; master takes up 1/2 of screen)
@@ -41,9 +47,9 @@ myKeysToAdd = [
 -- remove some keybindings that I only use accidentally
 myKeysToRemove = ["M-q", "M-S-q"]
 
-main = xmonad $ defaultConfig {
+main = xmonad $ desktopConfig {
     terminal = myTerminal,
-    manageHook = myManageHook <+> manageHook defaultConfig,
+    manageHook = manageDocks <+> myManageHook <+> manageHook desktopConfig,
     layoutHook = myLayoutHook,
     workspaces = myWorkspaces
 } `additionalKeysP` myKeysToAdd `removeKeysP` myKeysToRemove
