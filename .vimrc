@@ -24,6 +24,9 @@ filetype plugin on
 
 nnoremap ' `
 nnoremap ` '
+nnoremap ; :
+nnoremap - ;
+nnoremap : -
 cmap w!! %!sudo tee > /dev/null %
 
 if filereadable('/usr/share/vim-scripts/macros/closetag.vim')
