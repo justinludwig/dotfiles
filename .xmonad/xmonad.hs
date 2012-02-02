@@ -1,6 +1,7 @@
 import Data.Map as M
 import XMonad
 import XMonad.Actions.CycleWS
+import XMonad.Actions.Warp
 import XMonad.Config.Desktop
 import XMonad.Config.Gnome
 import XMonad.Hooks.ManageDocks
@@ -26,7 +27,8 @@ myManageHook = composeAll ( [
 -- each layout is separated by |||
 -- layout 1: grid w/ master (expand/contract by 3/100; master takes up 1/2 of screen)
 -- layout 2: standard full (hides dock)
-myLayoutHook = (avoidStruts $ mastered (3/100) (1/2) $ Grid) ||| Full
+-- layout 3: standard grid (equally divided rectangles)
+myLayoutHook = (avoidStruts $ mastered (3/100) (1/2) $ Grid) ||| Full ||| Grid
 
 -- add 26 extra workspaces beyond the default 9
 myWorkspaces = ["1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
@@ -38,6 +40,10 @@ myKeysToAdd = [
     ("M-<Right>", nextWS),
     ("M-S-<Left>", shiftToPrev),
     ("M-S-<Right>", shiftToNext),
+    ("<Print>", spawn "gnome-panel-screenshot -i"),
+    ("M-<Print>", spawn "gnome-panel-screenshot -w"),
+    -- move pointer to currently focused window
+    ("M-S-m", warpToWindow 0 0),
     -- extra promptKeymap business to fix http://code.google.com/p/xmonad/issues/detail?id=317
     ("M-;", workspacePrompt defaultXPConfig { promptKeymap = M.fromList [((controlMask, xK_c), quit)] `M.union` promptKeymap defaultXPConfig } (windows . W.view)),
     ("M-S-;", workspacePrompt defaultXPConfig  { promptKeymap = M.fromList [((controlMask, xK_c), quit)] `M.union` promptKeymap defaultXPConfig }(windows . W.shift)),
