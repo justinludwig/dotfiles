@@ -100,6 +100,9 @@ fi
 
 # jl
 
+# force prompt to align to first column
+PS1="\[\033[G\]$PS1"
+
 . ~/bin/j.sh
 
 export PATH=$PATH:~/bin
@@ -130,7 +133,7 @@ export GREP_OPTIONS="--exclude-dir=\.{svn,git}"
 export JAVA_HOME=/usr/lib/jvm/java-6-openjdk
 
 export GRAILS_HOME=/opt/grails
-export PATH=$PATH:$GRAILS_HOME/bin
+test -e $GRAILS_HOME && export PATH=$PATH:$GRAILS_HOME/bin
 
-
+test -e /opt/percona/bin && export PATH=$PATH:/opt/percona/bin
 
