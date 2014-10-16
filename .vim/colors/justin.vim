@@ -1,5 +1,7 @@
 " vim: tw=0 ts=4 sw=4
 " Vim color file
+" Maintainer:	Ron Aaron <ron@ronware.org>
+" Last Change:	2003 May 02
 
 set background=light
 hi clear
@@ -21,7 +23,8 @@ hi Search term=reverse ctermfg=Black ctermbg=Cyan gui=NONE guifg=Black guibg=Cya
 hi Tag term=bold ctermfg=DarkBlue guifg=DarkBlue
 hi Error term=reverse ctermfg=15 ctermbg=9 guibg=Red guifg=White
 hi Todo term=standout ctermbg=White ctermfg=Blue guifg=Blue guibg=White
-hi  StatusLine term=reverse cterm=NONE ctermfg=Yellow ctermbg=DarkGray gui=NONE guifg=Yellow guibg=DarkGray
+hi StatusLine term=reverse cterm=NONE ctermfg=DarkRed ctermbg=LightGray gui=NONE guifg=DarkRed guibg=LightCyan
+hi SignColumn guifg=Black guibg=LightCyan ctermfg=DarkRed ctermbg=LightCyan
 hi! link MoreMsg Comment
 hi! link ErrorMsg Visual
 hi! link WarningMsg ErrorMsg
