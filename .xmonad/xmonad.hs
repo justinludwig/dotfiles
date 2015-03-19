@@ -18,7 +18,7 @@ import qualified XMonad.StackSet as W
 myTerminal = "gnome-terminal --hide-menubar"
 
 -- automatically manage docks/panels
-myManageHook = composeAll ( [ 
+myManageHook = composeAll ( [
     manageHook gnomeConfig ,
     className =? "Unity-2d-panel" --> doIgnore,
     className =? "Unity-2d-launcher" --> doFloat
@@ -28,10 +28,14 @@ myManageHook = composeAll ( [
 -- layout 1: grid w/ master (expand/contract by 3/100; master takes up 1/2 of screen)
 -- layout 2: standard full (hides dock)
 -- layout 3: standard grid (equally divided rectangles)
-myLayoutHook = (avoidStruts $ mastered (3/100) (1/2) $ Grid) ||| Full ||| Grid
+myLayoutHook = (avoidStruts $ mastered (3/100) (1/2) $ Grid) ||| Full
 
--- add 26 extra workspaces beyond the default 9
-myWorkspaces = ["1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+-- add a bunch of extra workspaces beyond the default 9
+myWorkspaces = ["1","2","3","4","5","6","7","8","9","0",
+    "a","b","c","d","e","f","g","h","i","j","k","l","m",
+    "n","o","p","q","r","s","t","u","v","w","x","y","z",
+    "aa","bb","cc","dd","ee","ff","gg","hh","ii","jj","kk","ll","mm",
+    "nn","oo","pp","qq","rr","ss","tt","uu","vv","ww","xx","yy","zz"]
 
 -- add keybindings (via EZConfig) to access additional workspaces
 -- M = mod (alt), S = shift
