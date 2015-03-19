@@ -19,6 +19,8 @@ set showmode
 set softtabstop=4
 set tabstop=4
 set title
+set undofile
+set undodir=~/tmp/vim//,~/tmp//,/var/tmp/vim//,/var/tmp//,/tmp//
 set wildmenu
 set wildmode=list:longest
 
@@ -126,8 +128,12 @@ let g:ctrlp_dotfiles = 0
 let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_open_multiple_files = 'r'
 
+let g:DirDiffEnableMappings = 1
+let g:DirDiffExcludes = 'CSV,.git,.svn'
+
 let g:EasyGrepReplaceWindowMode = 2
 
+let g:unite_source_buffer_time_format = '%m/%d %H:%M'
 let g:unite_source_history_yank_enable = 1
 if executable('ack-grep')
     let g:unite_source_grep_command = 'ack-grep'
