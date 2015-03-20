@@ -11,6 +11,19 @@ test -e ~/bin/powerline-shell.py && test "$COLORTERM" = "gnome-terminal" \
 
 test -e ~/bin && export PATH=$PATH:~/bin
 
+# ssh-agent fu
+if [ -e ~/bin/ssh-find-agent.sh ]; then
+    . ~/bin/ssh-find-agent.sh
+    ssh-find-agent -a
+fi
+# start ssh-agent if not already running
+test "$SSH_AUTH_SOCK" || eval $(ssh-agent) >/dev/null
+# setup just-in-time ssh-add if no identities yet available
+ssh-add -l >/dev/null \
+    || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
+# start gpg-agent if not already running
+test "$GPG_AGENT_INFO" || eval $(gpg-agent --daemon) >/dev/null
+
 set -o vi
 
 bind '"\e[A": history-search-backward'
