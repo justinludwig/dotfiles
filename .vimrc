@@ -24,10 +24,6 @@ set undodir=~/tmp/vim//,~/tmp//,/var/tmp/vim//,/var/tmp//,/tmp//
 set wildmenu
 set wildmode=list:longest
 
-syntax enable
-colorscheme justin
-filetype plugin on
-
 let mapleader=","
 
 noremap ' `
@@ -80,16 +76,6 @@ noremap <space>y :Unite history/yank<CR>
 
 cmap w!! w !sudo tee % > /dev/null
 
-if filereadable('/usr/share/vim-scripts/macros/closetag.vim')
-    " au FileType html,xml,gsp source /usr/share/vim-scripts/macros/closetag.vim
-    let g:closetag_html_style=1
-    source /usr/share/vim-scripts/macros/closetag.vim
-endif
-
-set runtimepath^=~/.vim/bundle/*
-
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-
 if &readonly
     set statusline=%f
     set statusline+=%=
@@ -97,6 +83,52 @@ if &readonly
     set statusline+=\ %l/%L
     set statusline+=\ %p%%
 endif
+
+" Vundle/
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'Align'
+Plugin 'bkad/CamelCaseMotion'
+
+Plugin 'docunext/closetag.vim'
+let g:closetag_html_style=1
+
+Plugin 'chrisbra/csv.vim'
+let g:csv_arrange_leftalign = 1
+let g:csv_highlight_column = 'y'
+let g:csv_no_conceal = 1
+
+Plugin 'DirDiff.vim'
+"let g:DirDiffEnableMappings = 1
+let g:DirDiffExcludes = 'CSV,.git,.svn'
+
+Plugin 'gregsexton/gitv'
+Plugin 'sjl/gundo.vim'
+Plugin 'matchit.zip'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'nobeans/unite-grails'
+Plugin 'tacroe/unite-mark'
+
+Plugin 'Shougo/unite.vim'
+let g:unite_source_buffer_time_format = '%m/%d %H:%M'
+let g:unite_source_history_yank_enable = 1
+if executable('ack-grep')
+    let g:unite_source_grep_command = 'ack-grep'
+    let g:unite_source_grep_default_opts = '-H -i --nocolor --nogroup'
+    let g:unite_source_grep_recursive_opt = ''
+endif
+if executable('wcfind')
+    let g:unite_source_find_command = 'wcfind'
+endif
+
+Plugin 'vcscommand.vim'
+
+Plugin 'bling/vim-airline'
 let g:airline_detect_iminsert = 1
 let g:airline_inactive_collapse = 0
 let g:airline_powerline_fonts = 1
@@ -116,38 +148,24 @@ let g:airline_theme = 'base16'
 " understated.vim
 " zenburn.vim
 
+Plugin 'ntpeters/vim-better-whitespace'
 let g:better_whitespace_filetypes_blacklist=['unite']
 
-let g:csv_arrange_leftalign = 1
-let g:csv_highlight_column = 'y'
-let g:csv_no_conceal = 1
+Plugin 'tpope/vim-fugitive'
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-surround'
+Plugin 'kmnk/vim-unite-svn'
+Plugin 'file:///home/justin/projects/vim-unite-vcs'
 
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_dotfiles = 0
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_open_multiple_files = 'r'
-
-let g:DirDiffEnableMappings = 1
-let g:DirDiffExcludes = 'CSV,.git,.svn'
-
-let g:EasyGrepReplaceWindowMode = 2
-
-let g:unite_source_buffer_time_format = '%m/%d %H:%M'
-let g:unite_source_history_yank_enable = 1
-if executable('ack-grep')
-    let g:unite_source_grep_command = 'ack-grep'
-    let g:unite_source_grep_default_opts = '-H -i --nocolor --nogroup'
-    let g:unite_source_grep_recursive_opt = ''
-endif
-if executable('wcfind')
-    let g:unite_source_find_command = 'wcfind'
-endif
+call vundle#end()
+" /Vundle
 
 call unite#custom#profile('default', 'context', {
+\    'ignorecase': 1,
 \    'start_insert': 1,
 \ })
-call unite#custom#profile('default', 'ignorecase', 1)
 call unite#custom_source('file,file_rec,file_rec/async,grep',
 \    'ignore_pattern', join([
 \       '\.git/',
@@ -157,11 +175,27 @@ call unite#custom_source('file,file_rec,file_rec/async,grep',
 \    ], '\|'))
 call unite#filters#matcher_default#use(['matcher_context'])
 
+syntax enable
+colorscheme justin
+let g:airline_theme='light'
+filetype plugin on
+
 if has('gui_running')
-    let g:airline_theme='light'
     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
     set guioptions-=T   " Get rid of toolbar "
     set guioptions-=m   " Get rid of menu    "
     set ttyfast
 endif
+
+"set runtimepath^=~/.vim/bundle/*
+
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_dotfiles = 0
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_open_multiple_files = 'r'
+
+let g:EasyGrepReplaceWindowMode = 2
 
