@@ -1,0 +1,25 @@
+
+# turn off bell
+xset -b
+
+# don't use screensaver
+xset s off
+# turn off screen after 30 minutes of inactivity (in seconds)
+xset dpms 0 0 1800
+# autolock after 30 minutes of inactivity
+# with a notification 60 seconds beforehand
+xautolock -detectsleep -time 30 \
+    -locker "i3lock -d" \
+    -notify 60 -notifier "notify-send 'SLEEPY!!!'" &
+
+# set key repeat delay and rate (in ms)
+xset r rate 500 40
+
+# set background color
+xsetroot -solid '#ccddff'
+
+# emulate mouse-wheel scrolling with middle-btn + nub
+xinput set-prop 'PS/2 Generic Mouse' 'Evdev Wheel Emulation' 1
+xinput set-prop 'PS/2 Generic Mouse' 'Evdev Wheel Emulation Button' 2
+xinput set-prop 'PS/2 Generic Mouse' 'Evdev Wheel Emulation Inertia' 7
+
