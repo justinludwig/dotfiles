@@ -1,0 +1,76 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        color_good = "#006600"
+        color_degraded = "#666600"
+        color_bad = "#cc0000"
+        interval = 1
+}
+
+#order += "ipv6"
+#order += "run_watch DHCP"
+#order += "run_watch VPN"
+order += "wireless wlan0"
+order += "ethernet eth0"
+order += "disk /"
+order += "disk /mnt/shared"
+order += "cpu_usage"
+order += "load"
+order += "battery 0"
+order += "tztime local"
+
+wireless wlan0 {
+        format_up = "W: (%quality at %essid) %ip"
+        format_down = "W: down"
+}
+
+ethernet eth0 {
+        # if you use %speed, i3status requires root privileges
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+}
+
+battery 0 {
+        format = "%status %percentage %remaining"
+        last_full_capacity = true
+        integer_battery_capacity = true
+        threshold_type = "time"
+        low_threshold = 10
+}
+
+run_watch DHCP {
+        pidfile = "/var/run/dhclient*.pid"
+}
+
+run_watch VPN {
+        pidfile = "/var/run/vpnc/pid"
+}
+
+tztime local {
+        format = "%Y-%m-%d %H:%M:%S"
+}
+
+load {
+        format = "%1min"
+        max_threshold = 2
+}
+
+disk "/" {
+        format = "r %avail"
+}
+
+disk "/mnt/shared" {
+        format = "s %avail"
+}
+
+cpu_usage {
+        format = "%usage"
+}
+
