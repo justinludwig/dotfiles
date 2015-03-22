@@ -1,0 +1,13 @@
+[color]
+	ui = auto # color everything sent to terminal
+[core]
+	autocrlf = input # use unix line endings
+[include]
+    path = ~/.gitconfig.local
+[push]
+	default = upstream # push only the current branch to its upstream
+[rebase]
+	stat = true # show diffstat of what changed upstream since last rebase
+[rerere]
+	autoupdate = true # automatically mark rerere-merged conflicts as solved
+	enabled = true # enable reusing recorded merge resolutions
