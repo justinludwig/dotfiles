@@ -1,0 +1,15 @@
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.hinting:    true
+Xft.rgba:       rgb
+Xft.hintstyle:  hintmedium
+xterm*background:       #f7f7e0
+xterm*cursorColor:      black
+xterm*foreground:       black
+xterm*faceName:         Ubuntu Mono derivative Powerline
+xterm*faceSize:         10
+xterm*locale:           true
+xterm*renderFont:       true
+xterm*saveLines:        99999
+xterm*scrollTtyOutput:  true
+xterm*termName:         xterm-256color
