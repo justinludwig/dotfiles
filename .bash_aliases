@@ -49,11 +49,7 @@ export GREP_OPTIONS="--exclude-dir=\.{svn,git}"
 
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
 
-export GRAILS_HOME=/opt/grails
-test -e $GRAILS_HOME && export PATH=$PATH:$GRAILS_HOME/bin
-
-export GRADLE_HOME=/opt/gradle
-test -e $GRADLE_HOME && export PATH=$PATH:$GRADLE_HOME/bin
-
 test -e /opt/phantomjs/bin && export PATH=$PATH:/opt/phantomjs/bin
 test -e /opt/percona/bin && export PATH=$PATH:/opt/percona/bin
+
+[[ -s "$HOME/.gvm/bin/gvm-init.sh" ]] && source "$HOME/.gvm/bin/gvm-init.sh"
