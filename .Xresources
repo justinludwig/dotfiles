@@ -3,7 +3,7 @@ Xft.antialias:  true
 Xft.hinting:    true
 Xft.rgba:       rgb
 Xft.hintstyle:  hintmedium
-xterm*background:       #f7f7e0
+xterm*background:       seashell
 xterm*cursorColor:      black
 xterm*foreground:       black
 xterm*faceName:         Ubuntu Mono derivative Powerline
@@ -11,28 +11,44 @@ xterm*faceSize:         10
 xterm*locale:           true
 xterm*renderFont:       true
 xterm*saveLines:        99999
-xterm*scrollTtyOutput:  true
+xterm*scrollTtyOutput:  false
 xterm*termName:         xterm-256color
-*VT100*foreground: black
-*VT100*background: LemonChiffon
-*VT100*color0:     black
-*VT100*color1:     red4
-*VT100*color2:     green4
-*VT100*color3:     yellow4
-*VT100*color4:     blue4
-*VT100*color5:     magenta4
-*VT100*color6:     DeepSkyBlue2
-*VT100*color7:     gray75
-*VT100*color8:     gray30
-*VT100*color9:     red
-*VT100*color10:    LimeGreen
-*VT100*color11:    goldenrod
-*VT100*color12:    rgb:5c/5c/ff
-*VT100*color14:    turquoise3
-*VT100*color15:    white
 ! shift-select -> copy to clipboard
 ! ctrl-v -> paste from clipboard
 !
 *VT100.Translations: #override \
     Shift <Btn1Up>: select-end(CLIPBOARD) \n\
     Shift Ctrl <Key>V: insert-selection(CLIPBOARD)
+
+! black
+*color0: #000000
+! bright_black
+*color8: #505050
+! red
+*color1: #8e3f33
+! bright_red
+*color9: #c66e61
+! green
+*color2: #418e33
+! bright_green
+*color10: #70c661
+! yellow
+*color3: #8e8133
+! bright_yellow
+*color11: #c6b761
+! blue
+*color4: #33418e
+! bright_blue
+*color12: #6170c6
+! magenta
+*color5: #8e3382
+! bright_magenta
+*color13: #c661b9
+! cyan
+*color6: #33828e
+! bright_cyan
+*color14: #61b9c6
+! white
+*color7: #d0d0dd
+! bright_white
+*color15: #ffffff
