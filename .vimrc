@@ -38,9 +38,13 @@ nmap <silent> ,/ :nohlsearch<CR>
 noremap <leader>v V`]
 noremap <leader>s :SubstituteCase/\v\c
 noremap <leader>S :%SubstituteCase/\v\c
-noremap <leader>pa "ap
-noremap <leader>pb "ab
-noremap <leader>pc "ac
+" 'xb = copy lines to clipboard / 'pb = paste lines from clipboard
+map <leader>xb :w !xsel -ib<CR><CR>
+map <leader>xp :w !xsel -ip<CR><CR>
+map <leader>xs :w !xsel -is<CR><CR>
+map <leader>pb :r!xsel -ob<CR>
+map <leader>pp :r!xsel -op<CR>
+map <leader>ps :r!xsel -os<CR>
 
 noremap <leader>csv :set filetype=csv<CR>
 noremap <leader>A :%ArrangeColumn
@@ -175,10 +179,10 @@ call unite#custom_source('file,file_rec,file_rec/async,grep',
 \    ], '\|'))
 call unite#filters#matcher_default#use(['matcher_context'])
 
+filetype plugin on
 syntax enable
 colorscheme justin
 let g:airline_theme='light'
-filetype plugin on
 
 if has('gui_running')
     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
