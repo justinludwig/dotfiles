@@ -113,6 +113,7 @@ let g:DirDiffExcludes = 'CSV,.git,.svn'
 
 Plugin 'gregsexton/gitv'
 Plugin 'sjl/gundo.vim'
+Plugin 'keepcase.vim'
 Plugin 'matchit.zip'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'nobeans/unite-grails'
