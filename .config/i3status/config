@@ -17,24 +17,32 @@ general {
 #order += "ipv6"
 #order += "run_watch DHCP"
 #order += "run_watch VPN"
+#order += "bluetooth"
+order += "j3_netio"
 order += "wireless wlan0"
 order += "ethernet eth0"
+#order += "cpu_usage"
+order += "load"
+order += "j3_cpu"
+order += "j3_ram"
+#order += "sysdata"
 order += "disk /"
 order += "disk /mnt/shared"
-order += "cpu_usage"
-order += "load"
-order += "battery 0"
+#order += "battery 0"
+order += "j3_battery"
+order += "j3_weather"
+#order += "weather_current"
 order += "tztime local"
 
 wireless wlan0 {
-        format_up = "W: (%quality at %essid) %ip"
-        format_down = "W: down"
+        format_up = "w %ip %essid %quality"
+        format_down = "wlan0 down"
 }
 
 ethernet eth0 {
         # if you use %speed, i3status requires root privileges
-        format_up = "E: %ip (%speed)"
-        format_down = "E: down"
+        format_up = "e %ip %speed"
+        format_down = "eth0 down"
 }
 
 battery 0 {
@@ -72,5 +80,61 @@ disk "/mnt/shared" {
 
 cpu_usage {
         format = "%usage"
+}
+
+# py3status
+
+net_rate {
+    format = "{interface} {up}↑{down}↓"
+    precision = 0
+}
+
+sysdata {
+    cache_timeout = 1
+    med_threshold = 50
+    high_threshold = 90
+}
+
+j3_cpu {
+    mode = 'all'
+}
+
+j3_ram {
+    ram_format = 'RAM {:.1f}G'
+    swap_format = 'swap {:.1f}G'
+}
+
+j3_battery {
+    format = '{icon} {capacity}%'
+}
+
+j3_netio {
+    cache_timeout = 1
+    format = "{max} {interface}{direction}"
+    format_all_idle = ''
+    format_idle = ''
+    ignore_idle = True
+    interfaces = 'eth0 wlan0'
+    interface_labels = 'e w'
+    mode = 'max'
+    separator = '|'
+    rate_format = '{value:.0f}{units}'
+    rate_b  = ' B'
+    rate_kb = ' K'
+    rate_mb = ' M'
+    rate_gb = ' G'
+    rate_tb = ' T'
+    rate_good = 102400
+    rate_degraded = 512000
+    rate_bad = 1048576
+}
+
+j3_weather {
+    format = '{icon} {temp}°'
+    location = 'Bellevue WA'
+}
+
+weather_current {
+    city_code = "USWA0027"
 }
 
