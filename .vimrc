@@ -46,9 +46,10 @@ map <leader>pb :r!xsel -ob<CR>
 map <leader>pp :r!xsel -op<CR>
 map <leader>ps :r!xsel -os<CR>
 
+noremap <leader>2 :set shiftwidth=2<CR>:set softtabstop=2<CR>
 noremap <leader>csv :set filetype=csv<CR>
+noremap <leader>txt :set filetype=text<CR>
 noremap <leader>A :%ArrangeColumn
-
 noremap <leader>u :GundoToggle<CR>
 noremap <leader>w :StripWhitespace<CR>
 noremap <leader>W :%StripWhitespace<CR>
@@ -102,14 +103,19 @@ Plugin 'bkad/CamelCaseMotion'
 Plugin 'docunext/closetag.vim'
 let g:closetag_html_style=1
 
-Plugin 'chrisbra/csv.vim'
-let g:csv_arrange_leftalign = 1
-let g:csv_highlight_column = 'y'
-let g:csv_no_conceal = 1
+"Plugin 'chrisbra/csv.vim'
+"let g:csv_arrange_leftalign = 1
+"let g:csv_highlight_column = 'y'
+"let g:csv_no_conceal = 1
 
 Plugin 'DirDiff.vim'
 "let g:DirDiffEnableMappings = 1
 let g:DirDiffExcludes = 'CSV,.git,.svn'
+
+Plugin 'ciaranm/detectindent'
+let g:detectindent_preferred_expandtab = 1
+let g:detectindent_preferred_indent = 4
+let g:detectindent_preferred_when_mixed = 1
 
 Plugin 'gregsexton/gitv'
 Plugin 'sjl/gundo.vim'
@@ -158,6 +164,8 @@ let g:better_whitespace_filetypes_blacklist=['unite']
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'tpope/vim-markdown'
+Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-surround'
