@@ -6,7 +6,7 @@ PS1="\[\033[G\]$PS1"
 function _update_ps1() {
     export PS1="$(~/bin/powerline-shell.py $? 2> /dev/null)"
 }
-test -e ~/bin/powerline-shell.py && test "$TERM" = "xterm-256color" \
+test -e ~/bin/powerline-shell.py && test "$COLORTERM" != "" \
     && export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 
 test -e ~/bin && export PATH=$PATH:~/bin
@@ -34,8 +34,8 @@ alias gvim='gvim &>/dev/null'
 alias gview='gview --noplugin &>/dev/null'
 #gvim() { /usr/bin/gvim -f "$@" & true; }
 
-e() { xterm -e vi "$@" & true; }
-r() { xterm -e view --noplugin "$@" & true; }
+e() { urxvtcd -e vi "$@" & true; }
+r() { urxvtcd -e view --noplugin "$@" & true; }
 
 alias la='ls -latrh'
 alias lsd='ls -ldh'
