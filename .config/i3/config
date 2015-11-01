@@ -53,9 +53,14 @@ bindsym $mod+l focus right
 #bindsym $mod+Down move container to workspace prev
 #bindsym $mod+Up move container to workspace next
 bindsym $mod+Left exec i3workspaces.sh prev
-bindsym $mod+Down exec i3workspaces.sh move-prev
-bindsym $mod+Up exec i3workspaces.sh move-next
 bindsym $mod+Right exec i3workspaces.sh next
+bindsym $mod+Shift+Left exec i3workspaces.sh move-prev
+bindsym $mod+Shift+Right exec i3workspaces.sh move-next
+
+# move focused workspace to next output
+bindsym $mod+Shift+Up move workspace to output right
+# move focused container to next output
+bindsym $mod+Shift+Down move container to output right
 
 bindsym $mod+a workspace back_and_forth
 bindsym $mod+Shift+A move container to workspace back_and_forth
@@ -69,12 +74,6 @@ bindsym $mod+Shift+H move left
 bindsym $mod+Shift+J move down
 bindsym $mod+Shift+K move up
 bindsym $mod+Shift+L move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+w split h
@@ -130,10 +129,6 @@ bindsym $mod+Shift+Z exec i3-input -P 'move to workspace: ' -F 'move container t
 
 # switch focus to next output
 bindsym $mod+n focus output right
-# move focused container to next output
-bindsym $mod+Shift+N move container to output right
-# move focused workspace to next output
-bindsym $mod+Shift+M move workspace to output right
 
 # mark the current window
 bindsym $mod+m exec i3-input -P 'mark: ' -F 'mark %s'
@@ -174,21 +169,18 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Pulse Audio controls
-#bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 -- +5%
-#bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -- -5%
-#bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
-bindsym XF86AudioRaiseVolume exec ~/bin/lenovo/volume.sh +5%
-bindsym XF86AudioLowerVolume exec ~/bin/lenovo/volume.sh -5%
-bindsym XF86AudioMute exec ~/bin/lenovo/volume.sh toggle
-bindsym XF86AudioMicMute exec ~/bin/lenovo/microphone.sh toggle
+bindsym XF86AudioRaiseVolume exec ~/bin/x/volume.sh +5%
+bindsym XF86AudioLowerVolume exec ~/bin/x/volume.sh -5%
+bindsym XF86AudioMute exec ~/bin/x/volume.sh toggle
+bindsym XF86AudioMicMute exec ~/bin/x/microphone.sh toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessDown exec sudo ~/bin/lenovo/brightness.sh -16
-bindsym XF86MonBrightnessUp exec sudo ~/bin/lenovo/brightness.sh +16
+#bindsym XF86MonBrightnessDown exec sudo ~/bin/x/brightness.sh -16
+#bindsym XF86MonBrightnessUp exec sudo ~/bin/x/brightness.sh +16
 # turn off screen
 #bindsym XF86Display exec xset dpms force off
 # lock screen
-bindsym XF86Display exec i3lock -d -i ~/Documents/img/lock/current.png
+#bindsym XF86Display exec i3lock -d -i ~/Documents/img/lock/current.png
 
 # special keys
 bindsym --release Print exec import screenshot.png
@@ -197,14 +189,14 @@ bindsym --release Print exec import screenshot.png
 # lock icon = Super_L
 # both folder and F12 are MyComputer
 # cat /proc/acpi/ibm/bluetooth
-bindsym XF86WLAN exec notify-send XF86WLAN
-bindsym XF86Tools exec notify-send XF86Tools
-bindsym XF86Search exec notify-send XF86Search
+#bindsym XF86WLAN exec notify-send XF86WLAN
+#bindsym XF86Tools exec notify-send XF86Tools
+#bindsym XF86Search exec notify-send XF86Search
 #bindsym XF86LaunchA exec notify-send XF86LaunchA
 #bindsym XF86MyComputer exec notify-send XF86MyComputer
-bindsym XF86Calculator exec notify-send XF86Calculator
+#bindsym XF86Calculator exec notify-send XF86Calculator
 #bindsym Super_L exec notify-send Super_L
-bindsym XF86HomePage exec notify-send XF86HomePage
+#bindsym XF86HomePage exec notify-send XF86HomePage
 
 # nix titlebars
 new_window pixel 2
@@ -237,4 +229,10 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 exec --no-startup-id nm-applet
 # launch urxvt daemon
 exec --no-startup-id urxvtd -q -f -o
+# launch pulseaudio applet
+exec --no-startup-id pasystray
+# fix mouse buttons
+exec --no-startup-id ~/bin/x/map-mouse-buttons.sh
+# start xflux
+exec --no-startup-id xflux -l 47.6 -g -122.3
 
