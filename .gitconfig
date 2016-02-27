@@ -1,9 +1,18 @@
 [color]
 	ui = auto # color everything sent to terminal
+[color "diff-highlight"] # see xterm 256 color numbers
+    oldNormal = red
+    oldHighlight = 88 224
+    newNormal = green
+    newHighlight = 28 193
 [core]
 	autocrlf = input # use unix line endings
 [include]
     path = ~/.gitconfig.local
+[pager]
+    diff = diff-highlight | less # git/contrib/diff-highlight
+    log = diff-highlight | less
+    show = diff-highlight | less
 [push]
 	default = upstream # push only the current branch to its upstream
 [rebase]
