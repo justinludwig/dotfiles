@@ -4,7 +4,7 @@
     oldNormal = red
     oldHighlight = 88 224
     newNormal = green
-    newHighlight = 28 193
+    newHighlight = 22 193
 [core]
 	autocrlf = input # use unix line endings
 [include]
