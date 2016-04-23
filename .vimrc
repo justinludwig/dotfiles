@@ -3,7 +3,7 @@ set background=light
 set backspace=indent,eol,start
 set colorcolumn=80
 set diffopt=filler,context:4,icase
-set directory=~/tmp/vim//,~/tmp//,/var/tmp/vim//,/var/tmp//,/tmp//
+set directory=~/.cache/vim//,/var/tmp/vim//,/var/tmp//,/tmp//
 set expandtab
 set hidden
 set history=100
@@ -20,7 +20,7 @@ set softtabstop=4
 set tabstop=4
 set title
 set undofile
-set undodir=~/tmp/vim//,~/tmp//,/var/tmp/vim//,/var/tmp//,/tmp//
+set undodir=~/.cache/vim//,/var/tmp/vim//,/var/tmp//,/tmp//
 set wildmenu
 set wildmode=list:longest
 
@@ -36,6 +36,7 @@ inoremap jj <ESC>
 nmap <silent> ,/ :nohlsearch<CR>
 
 noremap <leader>v V`]
+noremap <leader>V `[v`]
 noremap <leader>s :SubstituteCase/\v\c
 noremap <leader>S :%SubstituteCase/\v\c
 " 'xb = copy lines to clipboard / 'pb = paste lines from clipboard
@@ -79,7 +80,12 @@ noremap <space>vl :Unite vcs/log<CR>
 noremap <space>vs :Unite -default-action=open vcs/status<CR>
 noremap <space>y :Unite history/yank<CR>
 
-cmap w!! w !sudo tee % > /dev/null
+cmap w!! w !sudo tee >/dev/null %
+
+autocmd bufenter /dev/* set noswapfile
+autocmd bufenter /run/* set noswapfile
+autocmd bufenter /dev/* set noundofile
+autocmd bufenter /run/* set noundofile
 
 if &readonly
     set statusline=%f
@@ -171,6 +177,7 @@ Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-surround'
 Plugin 'kmnk/vim-unite-svn'
 Plugin 'file:///home/justin/projects/vim-unite-vcs'
+Plugin 'guns/xterm-color-table.vim'
 
 call vundle#end()
 " /Vundle
