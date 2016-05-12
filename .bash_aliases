@@ -3,53 +3,59 @@
 # force prompt to align to first column
 PS1="\[\033[G\]$PS1"
 
-function _update_ps1() {
-    export PS1="$(~/bin/powerline-shell.py $? 2> /dev/null)"
-}
-test -e ~/bin/powerline-shell.py && test "$COLORTERM" != "" \
-    && export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+test -e /usr/share/powerline && . /usr/share/powerline/bindings/bash/powerline.sh
 
 test -e ~/bin && export PATH=$PATH:~/bin
+test -e ~/.local/bin && export PATH=$PATH:~/.local/bin
 
-# ssh-agent fu
-if [ -e ~/bin/ssh-find-agent.sh ]; then
-    . ~/bin/ssh-find-agent.sh
-    ssh-find-agent -a
-fi
 # start ssh-agent if not already running
 test "$SSH_AUTH_SOCK" || eval $(ssh-agent) >/dev/null
 # setup just-in-time ssh-add if no identities yet available
 ssh-add -l >/dev/null \
     || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 # start gpg-agent if not already running
-test "$GPG_AGENT_INFO" || eval $(gpg-agent --daemon) >/dev/null
+pgrep gpg-agent >/dev/null || eval $(gpg-agent --daemon) >/dev/null
+
+shopt -s cmdhist
+HISTSIZE=100000
+HISTFILESIZE=100000
+HISTCONTROL='ignoreboth:erasedups'
+export HISTIGNORE='exit'
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 set -o vi
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+bind '"\e[C": forward-char'
+bind '"\e[D": backward-char'
 
-# workaround for 'unable to register window with path' error
-alias gvim='gvim &>/dev/null'
-alias gview='gview --noplugin &>/dev/null'
-#gvim() { /usr/bin/gvim -f "$@" & true; }
-
-e() { urxvtcd -e vi "$@" & true; }
-r() { urxvtcd -e view --noplugin "$@" & true; }
+shopt -s globstar 2>/dev/null
+bind "set completion-ignore-case on"
+bind "set completion-map-case on"
+bind "set show-all-if-ambiguous on"
 
 alias la='ls -latrh'
 alias lsd='ls -ldh'
 alias ltr='ls -ltrh'
 
-alias gpg-list='gpg --list-only --no-default-keyring --secret-keyring /dev/null'
+alias gpg='gpg2'
+alias gpg-list='gpg2 --list-only --no-default-keyring --secret-keyring /dev/null'
 
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/vi
 export FIGNORE=.svn:.git
-export GREP_OPTIONS="--exclude-dir=\.{svn,git}"
 
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+if [ -e /usr/bin/nvim ]; then
+    alias vi='nvim'
+    alias vimdiff='nvim -d'
+    alias dvi='nvim -d'
+    alias svi='sudo nvim'
+    alias svndiff='svn diff | nvim -R -'
+    export EDITOR=/usr/bin/nvim
+fi
+e() { urxvtcd -e nvim "$@" & true; }
+r() { urxvtcd -e nvim -R --noplugin "$@" & true; }
 
-test -e /opt/phantomjs/bin && export PATH=$PATH:/opt/phantomjs/bin
-test -e /opt/percona/bin && export PATH=$PATH:/opt/percona/bin
-
-[[ -s "$HOME/.gvm/bin/gvm-init.sh" ]] && source "$HOME/.gvm/bin/gvm-init.sh"
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
