@@ -26,10 +26,10 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec urxvtcd
-bindsym $mod+Shift+Return exec urxvtcd -e vi
+bindsym $mod+Shift+Return exec urxvtcd -e nvim
 
 # kill focused window
-bindsym $mod+Shift+c kill
+bindsym $mod+Shift+X kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
@@ -169,10 +169,10 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec ~/bin/x/volume.sh +5%
-bindsym XF86AudioLowerVolume exec ~/bin/x/volume.sh -5%
-bindsym XF86AudioMute exec ~/bin/x/volume.sh toggle
-bindsym XF86AudioMicMute exec ~/bin/x/microphone.sh toggle
+#bindsym XF86AudioRaiseVolume exec ~/bin/x/volume.sh +5%
+#bindsym XF86AudioLowerVolume exec ~/bin/x/volume.sh -5%
+#bindsym XF86AudioMute exec ~/bin/x/volume.sh toggle
+#bindsym XF86AudioMicMute exec ~/bin/x/microphone.sh toggle
 
 # Sreen brightness controls
 #bindsym XF86MonBrightnessDown exec sudo ~/bin/x/brightness.sh -16
@@ -211,7 +211,7 @@ client.urgent           #990000 #ff0000 #000000 #660000
 # finds out, if available)
 bar {
         position top
-        status_command py3status -i ~/projects/j3status
+        status_command ~/.local/bin/py3status -i ~/projects/j3status
         tray_output primary
         workspace_buttons no
 
@@ -222,7 +222,7 @@ bar {
 }
 
 # enable second monitor side-by-side
-exec --no-startup-id xrandr --output eDP --primary --output HDMI-0 --auto --left-of eDP
+exec --no-startup-id xrandr --output eDP1 --primary --mode 1600x900 --output HDMI2 --auto --left-of eDP1
 # start polkit agent for showing windowing password prompt
 exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 # launch network-manager applet
@@ -231,8 +231,6 @@ exec --no-startup-id nm-applet
 exec --no-startup-id urxvtd -q -f -o
 # launch pulseaudio applet
 exec --no-startup-id pasystray
-# fix mouse buttons
-exec --no-startup-id ~/bin/x/map-mouse-buttons.sh
 # start xflux
-exec --no-startup-id xflux -l 47.6 -g -122.3
+exec --no-startup-id redshift
 

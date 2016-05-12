@@ -19,8 +19,8 @@ general {
 #order += "run_watch VPN"
 #order += "bluetooth"
 order += "j3_netio"
-order += "wireless wlan0"
-order += "ethernet eth0"
+order += "wireless wlp2s0"
+order += "ethernet enp3s0f1"
 #order += "cpu_usage"
 order += "load"
 order += "j3_cpu"
@@ -34,15 +34,15 @@ order += "j3_weather"
 #order += "weather_current"
 order += "tztime local"
 
-wireless wlan0 {
+wireless wlp2s0 {
         format_up = "w %ip %essid %quality"
-        format_down = "wlan0 down"
+        format_down = "wlp2s0 down"
 }
 
-ethernet eth0 {
+ethernet enp3s0f1 {
         # if you use %speed, i3status requires root privileges
         format_up = "e %ip %speed"
-        format_down = "eth0 down"
+        format_down = "enp3s0f1 down"
 }
 
 battery 0 {
@@ -105,6 +105,7 @@ j3_ram {
 }
 
 j3_battery {
+    ac_info = '/sys/class/power_supply/AC'
     format = '{icon} {capacity}%'
 }
 
@@ -114,7 +115,7 @@ j3_netio {
     format_all_idle = ''
     format_idle = ''
     ignore_idle = True
-    interfaces = 'eth0 wlan0'
+    interfaces = 'enp3s0f1 wlp2s0'
     interface_labels = 'e w'
     mode = 'max'
     separator = '|'
