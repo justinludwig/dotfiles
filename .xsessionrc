@@ -9,20 +9,18 @@ xset dpms 0 0 1800
 # autolock after 30 minutes of inactivity
 # with a notification 60 seconds beforehand
 xautolock -detectsleep -time 30 \
-    -locker "i3lock -d ~/Documents/img/lock/current.png" \
+    -locker "i3lock -c 000000 -d ~/Documents/img/lock/current.png" \
     -notify 60 -notifier "notify-send 'To sleep, to dream, to dream no more'" &
 
 # set key repeat delay and rate (in ms)
 xset r rate 500 50
 
-# increase contrast and fix blue-green tint
-xgamma -rgamma 0.7 -ggamma 0.6 -bgamma 0.5
+# use capslock as another escape key
+setxkbmap -option 'caps:escape'
+
+# increase contrast and fix red tint
+xgamma -rgamma 0.5 -ggamma 0.7 -bgamma 0.6
 
 # set background color
 xsetroot -solid '#ccccff'
-
-# emulate mouse-wheel scrolling with middle-btn + nub
-xinput set-prop 'PS/2 Generic Mouse' 'Evdev Wheel Emulation' 1
-xinput set-prop 'PS/2 Generic Mouse' 'Evdev Wheel Emulation Button' 2
-xinput set-prop 'PS/2 Generic Mouse' 'Evdev Wheel Emulation Inertia' 7
 
