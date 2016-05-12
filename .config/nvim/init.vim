@@ -1,5 +1,5 @@
 set autoindent
-set background=light
+set background=dark
 set backspace=indent,eol,start
 set colorcolumn=80
 set diffopt=filler,context:4,icase
@@ -95,18 +95,19 @@ if &readonly
     set statusline+=\ %p%%
 endif
 
-" Vundle/
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+    silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+" vim-plug/
 set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.config/nvim/plugged')
 
-Plugin 'gmarik/Vundle.vim'
+Plug 'Align'
+Plug 'bkad/CamelCaseMotion'
 
-Plugin 'Align'
-Plugin 'bkad/CamelCaseMotion'
-
-Plugin 'docunext/closetag.vim'
+Plug 'docunext/closetag.vim'
 let g:closetag_html_style=1
 
 "Plugin 'chrisbra/csv.vim'
@@ -114,27 +115,33 @@ let g:closetag_html_style=1
 "let g:csv_highlight_column = 'y'
 "let g:csv_no_conceal = 1
 
-Plugin 'DirDiff.vim'
+Plug 'DirDiff.vim'
 "let g:DirDiffEnableMappings = 1
 let g:DirDiffExcludes = 'CSV,.git,.svn'
 
-Plugin 'ciaranm/detectindent'
+Plug 'ciaranm/detectindent'
 let g:detectindent_preferred_expandtab = 1
 let g:detectindent_preferred_indent = 4
 let g:detectindent_preferred_when_mixed = 1
 
-Plugin 'gregsexton/gitv'
-Plugin 'sjl/gundo.vim'
-Plugin 'keepcase.vim'
-Plugin 'matchit.zip'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'nobeans/unite-grails'
-Plugin 'tacroe/unite-mark'
+Plug 'gregsexton/gitv'
+Plug 'sjl/gundo.vim'
+Plug 'keepcase.vim'
+Plug 'matchit.zip'
+Plug 'scrooloose/nerdcommenter'
+Plug 'nobeans/unite-grails'
+Plug 'tacroe/unite-mark'
 
-Plugin 'Shougo/unite.vim'
+Plug 'Shougo/unite.vim'
 let g:unite_source_buffer_time_format = '%m/%d %H:%M'
 let g:unite_source_history_yank_enable = 1
-if executable('ack-grep')
+if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts =
+    \ '-i --vimgrep --hidden --ignore ' .
+    \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+    let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
     let g:unite_source_grep_command = 'ack-grep'
     let g:unite_source_grep_default_opts = '-H -i --nocolor --nogroup'
     let g:unite_source_grep_recursive_opt = ''
@@ -143,17 +150,18 @@ if executable('wcfind')
     let g:unite_source_find_command = 'wcfind'
 endif
 
-Plugin 'vcscommand.vim'
+Plug 'vcscommand.vim'
 
-Plugin 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 let g:airline_detect_iminsert = 1
 let g:airline_inactive_collapse = 0
 let g:airline_powerline_fonts = 1
 let g:airline_section_x = 'b%n'
 let g:airline_section_y = '%cx%04B'
 let g:airline_section_z = '%l/%L %p%%'
-let g:airline_theme = 'base16'
-" let g:airline#extensions#branch#use_vcscommand = 1
+let g:airline#extensions#branch#use_vcscommand = 1
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_theme = 'light'
 
 " kalisi.vim
 " light.vim *
@@ -165,23 +173,24 @@ let g:airline_theme = 'base16'
 " understated.vim
 " zenburn.vim
 
-Plugin 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 let g:better_whitespace_filetypes_blacklist=['unite']
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'Glench/Vim-Jinja2-Syntax'
-Plugin 'tpope/vim-markdown'
-Plugin 'jtratner/vim-flavored-markdown'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'mhinz/vim-signify'
-Plugin 'tpope/vim-surround'
-Plugin 'kmnk/vim-unite-svn'
-Plugin 'file:///home/justin/projects/vim-unite-vcs'
-Plugin 'guns/xterm-color-table.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'tpope/vim-markdown'
+Plug 'jtratner/vim-flavored-markdown'
+Plug 'Shougo/vimproc.vim'
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-surround'
+Plug 'kmnk/vim-unite-svn'
+Plug '~/projects/vim-unite-vcs'
+Plug 'guns/xterm-color-table.vim'
 
-call vundle#end()
-" /Vundle
+call plug#end()
+" /vim-plug
 
+if exists('g:unite_source_grep_command')
 call unite#custom#profile('default', 'context', {
 \    'ignorecase': 1,
 \    'start_insert': 1,
@@ -194,14 +203,17 @@ call unite#custom_source('file,file_rec,file_rec/async,grep',
 \       '.work/',
 \    ], '\|'))
 call unite#filters#matcher_default#use(['matcher_context'])
+endif
 
-filetype plugin on
-syntax enable
-colorscheme justin
-let g:airline_theme='light'
+"filetype plugin on
+"syntax enable
+"if &t_Co == 255
+if $TERM =~ '256color'
+    colorscheme justin
+endif
 
 if has('gui_running')
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+    set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
     set guioptions-=T   " Get rid of toolbar "
     set guioptions-=m   " Get rid of menu    "
     set ttyfast
