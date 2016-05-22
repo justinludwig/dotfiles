@@ -25,6 +25,10 @@
 				"priority": 40
 			},
 			{
+				"function": "powerline_svnstatus.svnstatus",
+				"priority": 40
+			},
+			{
 				"function": "powerline.segments.shell.jobnum",
 				"priority": 20
 			},
