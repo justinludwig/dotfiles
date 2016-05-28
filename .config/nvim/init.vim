@@ -80,6 +80,13 @@ noremap <space>vl :Unite vcs/log<CR>
 noremap <space>vs :Unite -default-action=open vcs/status<CR>
 noremap <space>y :Unite history/yank<CR>
 
+nmap gs <Plug>Sneak_s
+nmap gS <Plug>Sneak_S
+xmap gs <Plug>Sneak_s
+xmap gS <Plug>Sneak_S
+omap gs <Plug>Sneak_s
+omap gS <Plug>Sneak_S
+
 cmap w!! w !sudo tee >/dev/null %
 
 autocmd bufenter /dev/* set noswapfile
@@ -129,6 +136,15 @@ Plug 'sjl/gundo.vim'
 Plug 'keepcase.vim'
 Plug 'matchit.zip'
 Plug 'scrooloose/nerdcommenter'
+
+Plug 'scrooloose/syntastic'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_java_javac_config_file_enabled = 1
+
 Plug 'nobeans/unite-grails'
 Plug 'tacroe/unite-mark'
 
@@ -176,12 +192,17 @@ let g:airline_theme = 'light'
 Plug 'ntpeters/vim-better-whitespace'
 let g:better_whitespace_filetypes_blacklist=['unite']
 
+Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-fugitive'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'tpope/vim-markdown'
 Plug 'jtratner/vim-flavored-markdown'
 Plug 'Shougo/vimproc.vim'
 Plug 'mhinz/vim-signify'
+
+Plug 'justinmk/vim-sneak'
+let g:sneak#s_next = 1
+
 Plug 'tpope/vim-surround'
 Plug 'kmnk/vim-unite-svn'
 Plug '~/projects/vim-unite-vcs'
