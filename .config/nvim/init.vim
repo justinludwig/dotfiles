@@ -140,7 +140,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/syntastic'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_java_javac_config_file_enabled = 1
@@ -226,6 +226,7 @@ call unite#custom_source('file,file_rec,file_rec/async,grep',
 call unite#filters#matcher_default#use(['matcher_context'])
 endif
 
+filetype indent off
 "filetype plugin on
 "syntax enable
 "if &t_Co == 255
