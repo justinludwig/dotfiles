@@ -237,8 +237,12 @@ exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agen
 exec --no-startup-id nm-applet
 # launch urxvt daemon
 exec --no-startup-id urxvtd -q -f -o
+# launch powerline daemon
+exec --no-startup-id powerline-daemon
 # launch pulseaudio applet
 exec --no-startup-id pasystray
+# launch bluetooth applet
+exec --no-startup-id blueman-applet
 # start xflux
 exec --no-startup-id redshift
 
