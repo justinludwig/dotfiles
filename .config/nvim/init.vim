@@ -51,7 +51,7 @@ noremap <leader>2 :set shiftwidth=2<CR>:set softtabstop=2<CR>
 noremap <leader>csv :set filetype=csv<CR>
 noremap <leader>txt :set filetype=text<CR>
 noremap <leader>A :%ArrangeColumn
-noremap <leader>u :GundoToggle<CR>
+noremap <leader>u :MundoToggle<CR>
 noremap <leader>w :StripWhitespace<CR>
 noremap <leader>W :%StripWhitespace<CR>
 
@@ -132,12 +132,14 @@ let g:detectindent_preferred_indent = 4
 let g:detectindent_preferred_when_mixed = 1
 
 Plug 'gregsexton/gitv'
-Plug 'sjl/gundo.vim'
+
+Plug 'simnalamburt/vim-mundo'
+
 Plug 'keepcase.vim'
 Plug 'matchit.zip'
 Plug 'scrooloose/nerdcommenter'
 
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
