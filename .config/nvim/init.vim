@@ -132,9 +132,8 @@ let g:detectindent_preferred_indent = 4
 let g:detectindent_preferred_when_mixed = 1
 
 Plug 'gregsexton/gitv'
-
+Plug 'modille/groovy.vim'
 Plug 'simnalamburt/vim-mundo'
-
 Plug 'keepcase.vim'
 Plug 'matchit.zip'
 Plug 'scrooloose/nerdcommenter'
@@ -236,6 +235,8 @@ if $TERM =~ '256color'
     colorscheme justin
 endif
 
+" thin cursor in insert mode with urxvt
+set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 if has('gui_running')
     set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 12
     set guioptions-=T   " Get rid of toolbar "
