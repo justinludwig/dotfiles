@@ -1,22 +1,28 @@
 [color]
-	ui = auto # color everything sent to terminal
+    ui = auto # color everything sent to terminal
 [color "diff-highlight"] # see xterm 256 color numbers
     oldNormal = red
     oldHighlight = 88 224
     newNormal = green
     newHighlight = 22 193
 [core]
-	autocrlf = input # use unix line endings
+    autocrlf = input # use unix line endings
 [include]
     path = ~/.gitconfig.local
+[log]
+    decorate = full # show tags, remotes, etc in log by default
 [pager]
     diff = diff-highlight | less # git/contrib/diff-highlight
     log = diff-highlight | less
     show = diff-highlight | less
+[pull]
+    ff = only # pull --ff-only by default
 [push]
-	default = upstream # push only the current branch to its upstream
+    default = upstream # push only the current branch to its upstream
+    followTags = true # always push new tags
 [rebase]
-	stat = true # show diffstat of what changed upstream since last rebase
+    autoStash = true # if dirty stash before rebase, unstash after
+    stat = true # show diffstat of what changed upstream since last rebase
 [rerere]
-	autoupdate = true # automatically mark rerere-merged conflicts as solved
-	enabled = true # enable reusing recorded merge resolutions
+    autoupdate = true # automatically mark rerere-merged conflicts as solved
+    enabled = true # enable reusing recorded merge resolutions
