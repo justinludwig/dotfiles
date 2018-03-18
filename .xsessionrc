@@ -8,19 +8,22 @@ xset s off
 xset dpms 0 0 1800
 # autolock after 30 minutes of inactivity
 # with a notification 60 seconds beforehand
-xautolock -detectsleep -time 30 \
+xautolock -detectsleep -time 29 \
     -locker "i3lock -c 000000 -d ~/Documents/img/lock/current.png" \
     -notify 60 -notifier "notify-send 'To sleep, to dream, to dream no more'" &
 
 # set key repeat delay and rate (in ms)
-xset r rate 500 50
+xset r rate 400 40
 
 # use capslock as another escape key
-setxkbmap -option 'caps:escape'
+setxkbmap -option -option 'caps:escape'
 
 # increase contrast and fix red tint
 xgamma -rgamma 0.5 -ggamma 0.7 -bgamma 0.6
 
 # set background color
 xsetroot -solid '#ccccff'
+
+# turn on numlock
+numlockx on
 
