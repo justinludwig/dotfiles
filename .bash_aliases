@@ -39,8 +39,7 @@ alias la='ls -latrh'
 alias lsd='ls -ldh'
 alias ltr='ls -ltrh'
 
-alias gpg='gpg2'
-alias gpg-list='gpg2 --list-only --no-default-keyring --secret-keyring /dev/null'
+alias gpg-list='gpg --list-only --no-default-keyring --secret-keyring /dev/null'
 
 export EDITOR=/usr/bin/vi
 export FIGNORE=.svn:.git
@@ -55,6 +54,8 @@ if [ -e /usr/bin/nvim ]; then
 fi
 e() { urxvtcd -e nvim "$@" & true; }
 r() { urxvtcd -e nvim -R --noplugin "$@" & true; }
+
+#export PYTHONPATH="/home/justin/projects/powerline-svnstatus:$PYTHONPATH"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
