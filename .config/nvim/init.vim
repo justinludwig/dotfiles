@@ -8,9 +8,11 @@ set expandtab
 set hidden
 set history=100
 set hlsearch
+set infercase
 set incsearch
 set laststatus=2
 set nobackup
+set nojoinspaces
 set ruler
 set scrolloff=3
 set shiftwidth=4
@@ -54,6 +56,7 @@ noremap <leader>A :%ArrangeColumn
 noremap <leader>u :MundoToggle<CR>
 noremap <leader>w :StripWhitespace<CR>
 noremap <leader>W :%StripWhitespace<CR>
+noremap <leader>g :w !wc -m<CR>
 
 noremap <space><space> :Unite
 noremap <space>/ :Unite -immediately grep:.<CR>
@@ -87,12 +90,19 @@ xmap gS <Plug>Sneak_S
 omap gs <Plug>Sneak_s
 omap gS <Plug>Sneak_S
 
-cmap w!! w !sudo tee >/dev/null %
+cmap w!! w !sudo tee % >/dev/null
 
 autocmd bufenter /dev/* set noswapfile
 autocmd bufenter /run/* set noswapfile
 autocmd bufenter /dev/* set noundofile
 autocmd bufenter /run/* set noundofile
+
+" sw=shiftwidth sts=softtabstop ts=tabstop
+autocmd Filetype css setlocal sw=2 sts=2 ts=2
+autocmd Filetype html setlocal sw=2 sts=2 ts=2
+autocmd Filetype javascript setlocal sw=2 sts=2 ts=2
+autocmd Filetype ruby setlocal sw=2 sts=2 ts=2
+autocmd Filetype yaml setlocal sw=2 sts=2 ts=2
 
 if &readonly
     set statusline=%f
