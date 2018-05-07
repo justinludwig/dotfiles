@@ -1,0 +1,10 @@
+# vim: filetype=muttrc
+
+# Ctrl-k - Previous Mailbox
+bind index,pager \Ck sidebar-prev
+# Ctrl-j - Next Mailbox
+bind index,pager \Cj sidebar-next
+# Ctrl-o - Open Highlighted Mailbox
+bind index,pager \Co sidebar-open
+
+macro index,pager H "<view-attachments><search>html<enter><view-mailcap><exit>"

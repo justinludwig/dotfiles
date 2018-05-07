@@ -1,0 +1,30 @@
+#text/calendar; ~/projects/mutt-ical/mutt-ical.py -i -e "justin@ldwg.us,justin@ludw19.com" -c neomutt %s
+application/ics; ~/projects/mutt-ical/mutt-ical.py -i -e "justin@ldwg.us,justin@ludw19.com" -c neomutt %s
+
+text/html; w3m -T text/html '%s'       ; nametemplate=%s.html ; needsterminal
+text/html; w3m -T text/html -dump '%s' ; nametemplate=%s.html ; copiousoutput
+text/* ; nvim -R '%s' ; edit=nvim '%s' ; compose=nvim '%s' ; test=test -x /usr/bin/nvim ; needsterminal
+
+application/pdf ; evince %s      ; description="PDF Document" ; test=test -n "$DISPLAY" ; nametemplate=%s.pdf
+application/pdf ; pdftotext %s - ; description="PDF Document" ; nametemplate=%s.pdf     ; copiousoutput
+
+#application/pgp-encrypted; gpg2 -d %s ; nametemplate=%s.gpg ; copiousoutput
+
+image/pdf                ; eog %s ; description="PDF Image"   ; test=test "$DISPLAY" ; nametemplate=%s.pdf
+image/gif                ; eog %s ; description="GIF Image"   ; test=test "$DISPLAY" ; nametemplate=%s.gif
+image/jpeg               ; eog %s ; description="JPEG Image"  ; test=test "$DISPLAY" ; nametemplate=%s.jpeg
+image/pjpeg              ; eog %s ; description="JPEG Image"  ; test=test "$DISPLAY" ; nametemplate=%s.jpeg
+image/tiff               ; eog %s ; description="TIFF Image"  ; test=test "$DISPLAY" ; nametemplate=%s.tiff
+image/x-portable-bitmap  ; eog %s ; description="PBM Image"   ; test=test "$DISPLAY" ; nametemplate=%s.pbm
+image/x-portable-graymap ; eog %s ; description="PGM Image"   ; test=test "$DISPLAY" ; nametemplate=%s.pgm
+image/x-portable-pixmap  ; eog %s ; description="PPM Image"   ; test=test "$DISPLAY" ; nametemplate=%s.ppm
+image/x-xbitmap          ; eog %s ; description="XBM Image"   ; test=test "$DISPLAY" ; nametemplate=%s.xbm
+image/x-xpixmap          ; eog %s ; description="XPM Image"   ; test=test "$DISPLAY" ; nametemplate=%s.xpm
+image/bmp                ; eog %s ; description="BMP Image"   ; test=test "$DISPLAY" ; nametemplate=%s.bmp
+image/x-bmp              ; eog %s ; description="BMP Image"   ; test=test "$DISPLAY" ; nametemplate=%s.bmp
+image/x-ms-bmp           ; eog %s ; description="BMP Image"   ; test=test "$DISPLAY" ; nametemplate=%s.bmp
+image/x-rgb              ; eog %s ; description="RGB Image"   ; test=test "$DISPLAY" ; nametemplate=%s.rgb
+image/targa              ; eog %s ; description="TARGA Image" ; test=test "$DISPLAY" ; nametemplate=%s.tga
+image/fits               ; eog %s ; description="FITS Image"  ; test=test "$DISPLAY" ; nametemplate=%s.fits
+image/png                ; eog %s ; description="PNG Image"   ; test=test "$DISPLAY" ; nametemplate=%s.png
+image/pm                 ; eog %s ; description="PM Image"    ; test=test "$DISPLAY" ; nametemplate=%s.pm

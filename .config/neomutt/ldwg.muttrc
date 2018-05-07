@@ -1,0 +1,10 @@
+# vim: filetype=muttrc
+
+set from="justin@ldwg.us"
+set mbox="+ldwg/Archive"
+set record="+ldwg/Sent"
+set postponed="+ldwg/Drafts"
+set spoolfile="+ldwg/INBOX"
+set trash="+ldwg/Trash"
+
+alternates justin@ldwg.us justin@ludw19.com

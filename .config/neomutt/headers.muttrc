@@ -1,0 +1,16 @@
+# vim: filetype=muttrc
+
+ignore *
+
+unignore BCC:
+unignore CC:
+unignore Date:
+unignore From:
+unignore Mail-Followup-To:
+unignore Newsgroups:
+unignore Organization:
+unignore Reply-To:
+unignore Subject:
+unignore To:
+
+hdr_order Date: To: CC: BCC: Reply-To: Mail-Followup-To: Newsgroups: Organization: From: Subject:

@@ -1,0 +1,39 @@
+# vim: filetype=muttrc
+
+set abort_noattach=ask-yes
+set attribution="On %D, %n wrote:"
+set date_format="%a, %b %d, %Y at %I:%M %p %Z"
+set folder="~/mail"
+set forward_format="Fw: %s"
+set header_cache="~/.cache/mutt/headers"
+set history_file="~/.cache/mutt/history"
+set history=100
+set history_remove_dups
+set index_format="%4C %[%a %m/%d/%y %H:%M] (%?l?%4l&%4c?) %Z%?X?%2X&  ? %-20.20L %?g?:%-0.15g:&?%?H?:%-0.15H:&?%?y?:%-0.15y:&? %?M?%M--&?%s"
+set mail_check_stats
+set mailcap_path="~/.config/neomutt/mailcap:/etc/mailcap"
+set mask="!^\\.[^.]"
+set mbox_type=Maildir
+set move=no
+set realname="Justin Ludwig"
+set reverse_alias
+set reverse_name
+set sendmail="/usr/bin/msmtp"
+set sendmail_wait=0
+set sidebar_folder_indent
+set sidebar_format="%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_next_new_wrap
+set sidebar_short_path
+set sidebar_sort_method=path
+set sidebar_visible
+set strict_threads
+set text_flowed
+set thread_received
+set tmpdir="~/.cache/mutt/tmp"
+set use_envelope_from
+set wait_key=no
+
+mailboxes `find ~/mail -mindepth 1 -maxdepth 2 -type d -printf "+'%P' "`
+
+auto_view text/html
+alternative_order text/plain text/enriched text/html

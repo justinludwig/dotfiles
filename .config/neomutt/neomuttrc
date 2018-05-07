@@ -1,0 +1,10 @@
+source ~/.config/neomutt/solarized.muttrc
+source ~/.config/neomutt/options.muttrc
+source ~/.config/neomutt/headers.muttrc
+source ~/.config/neomutt/bindings.muttrc
+source ~/.config/neomutt/ldwg.muttrc
+
+folder-hook ldwg/* source ~/.config/neomutt/ldwg.muttrc
+folder-hook swwomm/* source ~/.config/neomutt/swwomm.muttrc
+folder-hook gmail/* source ~/.config/neomutt/gmail.muttrc
+folder-hook pst/* source ~/.config/neomutt/pst.muttrc

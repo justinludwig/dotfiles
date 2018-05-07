@@ -1,0 +1,10 @@
+# vim: filetype=muttrc
+
+set from="justin@pitchstonetechnology.com"
+set mbox="+pst/Archive"
+set record=""
+set postponed="+pst/Drafts"
+set spoolfile="+pst/INBOX"
+set trash="+pst/Trash"
+
+alternates justin@pitchstonetechnology.com justin@pitchstonehealth.com

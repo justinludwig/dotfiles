@@ -1,0 +1,63 @@
+[general]
+accounts = ldwg, pst
+metadata = ~/.cache/offlineimap
+pythonfile = ~/.config/offlineimap/offlineimap.py
+
+
+[DEFAULT]
+status_backend = sqlite
+
+
+[Account ldwg]
+remoterepository = ldwg_remote
+localrepository = ldwg_local
+
+[Repository ldwg_remote]
+type = IMAP
+remotehost = mail.ldwg.us
+remoteuser = justin
+remotepasseval = get_pass("ldwg/imap")
+ssl = yes
+sslcacertfile = OS-DEFAULT
+ssl_version = tls1_2
+
+[Repository ldwg_local]
+type = Maildir
+localfolders = ~/mail/ldwg
+restoreatime = no
+
+
+[Account pst]
+remoterepository = pst_remote
+localrepository = pst_local
+
+[Repository pst_remote]
+type = Gmail
+auth_mechanisms = PLAIN
+remoteuser = justin@pitchstonetechnology.com
+remotepasseval = get_pass("pst/google")
+sslcacertfile = OS-DEFAULT
+ssl_version = tls1_2
+synclabels = yes
+folderfilter = lambda foldername: foldername not in ['Spam']
+nametrans = lambda folder: {
+        '[Gmail]/All Mail':  'Archive',
+        '[Gmail]/Chats':     'Chats',
+        '[Gmail]/Drafts':    'Drafts',
+        '[Gmail]/Sent Mail': 'Sent',
+        '[Gmail]/Spam':      'Junk',
+        '[Gmail]/Trash':     'Trash',
+    }.get(folder, folder)
+
+[Repository pst_local]
+type = GmailMaildir
+localfolders = ~/mail/pst
+restoreatime = no
+nametrans = lambda folder: {
+        'Archive':  '[Gmail]/All Mail',
+        'Chats':    '[Gmail]/Chats',
+        'Drafts':   '[Gmail]/Drafts',
+        'Junk':     '[Gmail]/Spam',
+        'Sent':     '[Gmail]/Sent Mail',
+        'Trash':    '[Gmail]/Trash',
+    }.get(folder, folder)
