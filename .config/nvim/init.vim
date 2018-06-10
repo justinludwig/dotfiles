@@ -58,6 +58,14 @@ noremap <leader>w :StripWhitespace<CR>
 noremap <leader>W :%StripWhitespace<CR>
 noremap <leader>g :w !wc -m<CR>
 
+noremap <leader>ll :ALEFix<CR>
+noremap <leader>lp :ALEPrevious<CR>
+noremap <leader>ln :ALENext<CR>
+noremap <leader>lt :ALEToggle<CR>
+noremap <leader>lb :ALEToggleBuffer<CR>
+noremap <leader>ld :ALEDetail<CR>
+noremap <leader>li :ALEInfo<CR>
+
 noremap <space><space> :Unite
 noremap <space>/ :Unite -immediately grep:.<CR>
 noremap <space>b :Unite buffer<CR>
@@ -104,6 +112,9 @@ autocmd Filetype javascript setlocal sw=2 sts=2 ts=2
 autocmd Filetype ruby setlocal sw=2 sts=2 ts=2
 autocmd Filetype yaml setlocal sw=2 sts=2 ts=2
 
+" per-project settings
+autocmd BufRead,BufNewFile ~/bw/* setlocal sw=2 sts=2 ts=2
+
 if &readonly
     set statusline=%f
     set statusline+=%=
@@ -121,7 +132,20 @@ endif
 set nocompatible
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'Align'
+Plug 'w0rp/ale'
+let g:ale_fix_on_save = 1
+let g:ale_lint_delay = 1000 " milliseconds
+"let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_text_changed = 'never'
+let g:ale_fixers = {
+\   'css': ['prettier'],
+\   'java': ['google_java_format'],
+\   'javascript': ['eslint'],
+\   'json': ['prettier'],
+\   'vue': ['prettier'],
+\}
+
+Plug 'vim-scripts/Align'
 Plug 'bkad/CamelCaseMotion'
 
 Plug 'docunext/closetag.vim'
@@ -132,7 +156,7 @@ let g:closetag_html_style=1
 "let g:csv_highlight_column = 'y'
 "let g:csv_no_conceal = 1
 
-Plug 'DirDiff.vim'
+Plug 'vim-scripts/DirDiff.vim'
 "let g:DirDiffEnableMappings = 1
 let g:DirDiffExcludes = 'CSV,.git,.svn'
 
@@ -144,8 +168,8 @@ let g:detectindent_preferred_when_mixed = 1
 Plug 'gregsexton/gitv'
 Plug 'modille/groovy.vim'
 Plug 'simnalamburt/vim-mundo'
-Plug 'keepcase.vim'
-Plug 'matchit.zip'
+Plug 'vim-scripts/keepcase.vim'
+Plug 'vim-scripts/matchit.zip'
 Plug 'scrooloose/nerdcommenter'
 
 "Plug 'scrooloose/syntastic'
@@ -177,7 +201,7 @@ if executable('wcfind')
     let g:unite_source_find_command = 'wcfind'
 endif
 
-Plug 'vcscommand.vim'
+Plug 'vim-scripts/vcscommand.vim'
 
 Plug 'vim-airline/vim-airline'
 let g:airline_detect_iminsert = 1
@@ -186,6 +210,7 @@ let g:airline_powerline_fonts = 1
 let g:airline_section_x = 'b%n'
 let g:airline_section_y = '%cx%04B'
 let g:airline_section_z = '%l/%L %p%%'
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#use_vcscommand = 1
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme = 'light'
@@ -217,6 +242,7 @@ let g:sneak#s_next = 1
 Plug 'tpope/vim-surround'
 Plug 'kmnk/vim-unite-svn'
 Plug '~/projects/vim-unite-vcs'
+Plug 'posva/vim-vue'
 Plug 'guns/xterm-color-table.vim'
 
 call plug#end()
