@@ -1,5 +1,5 @@
-#text/calendar; ~/projects/mutt-ical/mutt-ical.py -i -e "justin@ldwg.us,justin@ludw19.com" -c neomutt %s
-application/ics; ~/projects/mutt-ical/mutt-ical.py -i -e "justin@ldwg.us,justin@ludw19.com" -c neomutt %s
+#text/calendar; ~/projects/mutt-ical/mutt-ical.py -i -e "justin@ldwg.us,justin@ludw19.com,justin@autonomadic.band" -c neomutt %s
+application/ics; ~/projects/mutt-ical/mutt-ical.py -i -e "justin@ldwg.us,justin@ludw19.com,justin@autonomadic.band" -c neomutt %s
 
 text/html; w3m -T text/html '%s'       ; nametemplate=%s.html ; needsterminal
 text/html; w3m -T text/html -dump '%s' ; nametemplate=%s.html ; copiousoutput

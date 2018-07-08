@@ -7,4 +7,4 @@ set postponed="+ldwg/Drafts"
 set spoolfile="+ldwg/INBOX"
 set trash="+ldwg/Trash"
 
-alternates justin@ldwg.us justin@ludw19.com
+alternates justin@ldwg.us justin@ludw19.com justin@autonomadic.band
