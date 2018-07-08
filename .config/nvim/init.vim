@@ -49,6 +49,11 @@ map <leader>pb :r!xsel -ob<CR>
 map <leader>pp :r!xsel -op<CR>
 map <leader>ps :r!xsel -os<CR>
 
+noremap <leader>fe :!eslint --fix %<CR>
+noremap <leader>fs :!stylelint --fix %<CR>
+noremap <leader>fp :!prettier --write %<CR>
+
+noremap <leader>ss :syntax sync fromstart<CR>
 noremap <leader>2 :set shiftwidth=2<CR>:set softtabstop=2<CR>
 noremap <leader>csv :set filetype=csv<CR>
 noremap <leader>txt :set filetype=text<CR>
@@ -112,6 +117,7 @@ autocmd Filetype javascript setlocal sw=2 sts=2 ts=2
 autocmd Filetype ruby setlocal sw=2 sts=2 ts=2
 autocmd Filetype yaml setlocal sw=2 sts=2 ts=2
 
+autocmd BufRead,BufNewFile */Jenkinsfile setfiletype groovy
 " per-project settings
 autocmd BufRead,BufNewFile ~/bw/* setlocal sw=2 sts=2 ts=2
 
