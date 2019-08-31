@@ -120,6 +120,14 @@ autocmd Filetype yaml setlocal sw=2 sts=2 ts=2
 autocmd BufRead,BufNewFile */Jenkinsfile setfiletype groovy
 " per-project settings
 autocmd BufRead,BufNewFile ~/bw/* setlocal sw=2 sts=2 ts=2
+autocmd BufRead,BufNewFile ~/bw/chainmonitor/* set tags=$HOME/.cache/tags/chainmonitor,$HOME/.cache/tags/openjdk10
+
+" netrw tree view
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
 
 if &readonly
     set statusline=%f
