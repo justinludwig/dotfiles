@@ -11,7 +11,7 @@ test -e ~/.local/bin && export PATH=$PATH:~/.local/bin
 # start ssh-agent if not already running
 test "$SSH_AUTH_SOCK" || eval $(ssh-agent) >/dev/null
 # setup just-in-time ssh-add if no identities yet available
-ssh-add -l >/dev/null \
+ssh-add -l >/dev/null 2>&1 \
     || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
 # start gpg-agent if not already running
 pgrep gpg-agent >/dev/null || eval $(gpg-agent --daemon) >/dev/null
@@ -20,7 +20,7 @@ shopt -s cmdhist
 HISTSIZE=100000
 HISTFILESIZE=100000
 HISTCONTROL='ignoreboth:erasedups'
-export HISTIGNORE='exit'
+HISTIGNORE='exit'
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 set -o vi
@@ -48,6 +48,8 @@ if [ -e /usr/bin/nvim ]; then
     alias vi='nvim'
     alias vimdiff='nvim -d'
     alias dvi='nvim -d'
+    alias fvi='nvim $(fzf)'
+    alias rvi='nvim -R'
     alias svi='sudo nvim'
     alias svndiff='svn diff | nvim -R -'
     export EDITOR=/usr/bin/nvim
@@ -56,6 +58,10 @@ e() { urxvtcd -e nvim "$@" & true; }
 r() { urxvtcd -e nvim -R --noplugin "$@" & true; }
 
 #export PYTHONPATH="/home/justin/projects/powerline-svnstatus:$PYTHONPATH"
+
+# add to .bashrc:
+#test -f /usr/bin/ag && export FZF_DEFAULT_COMMAND='ag --ignore .git --hidden -g ""'
+#test -f ~/.fzf.bash && source ~/.fzf.bash
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
