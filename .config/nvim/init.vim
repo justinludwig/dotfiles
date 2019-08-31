@@ -71,30 +71,27 @@ noremap <leader>lb :ALEToggleBuffer<CR>
 noremap <leader>ld :ALEDetail<CR>
 noremap <leader>li :ALEInfo<CR>
 
-noremap <space><space> :Unite
-noremap <space>/ :Unite -immediately grep:.<CR>
-noremap <space>b :Unite buffer<CR>
-noremap <space>cb :UniteWithCursorWord -immediately buffer<CR>
-noremap <space>cf :UniteWithCursorWord -immediately file_rec/async<CR>
-noremap <space>cg :UniteWithCursorWord -immediately grep<CR>
-noremap <space>f :Unite file_rec/async<CR>
-noremap <space>gd :Unite grails/domain<CR>
-noremap <space>gc :Unite grails/controllers<CR>
-noremap <space>gs :Unite grails/services<CR>
-noremap <space>gt :Unite grails/taglib<CR>
-noremap <space>gg :Unite grails/src<CR>
-noremap <space>gu :Unite grails/test_unit<CR>
-noremap <space>gi :Unite grails/test_integration<CR>
-noremap <space>gf :Unite grails/test_functional<CR>
-noremap <space>gl :Unite grails/css<CR>
-noremap <space>gj :Unite grails/js<CR>
-noremap <space>m :Unite -immediately buffer:+<CR>
-noremap <space>r :Unite register<CR>
-noremap <space>vc :Unite -default-action=open vcs/changeset<CR>
-noremap <space>vf :Unite vcs/file_rec<CR>
-noremap <space>vl :Unite vcs/log<CR>
-noremap <space>vs :Unite -default-action=open vcs/status<CR>
-noremap <space>y :Unite history/yank<CR>
+noremap <space>/ :Ag 
+" lines in current buffer
+noremap <space>a :BLines 
+noremap <space>b :Buffer<CR>
+" tags in current buffer
+noremap <space>c :BTags 
+" dirty files
+noremap <space>d :GFiles?<CR>
+noremap <space>f :Files<CR>
+" files in source control
+noremap <space>g :GFiles<CR>
+" command history
+noremap <space>h :History:<CR>
+noremap <space>j :Files<CR>.java 
+noremap <space>s :Files<CR>.js 
+noremap <space>l :Lines 
+noremap <space>m :Marks<CR>
+" previously opened files
+noremap <space>o :History<CR>
+noremap <space>t :Tags 
+noremap <space>v :Files<CR>.vue 
 
 nmap gs <Plug>Sneak_s
 nmap gS <Plug>Sneak_S
@@ -179,6 +176,9 @@ let g:detectindent_preferred_expandtab = 1
 let g:detectindent_preferred_indent = 4
 let g:detectindent_preferred_when_mixed = 1
 
+Plug 'junegunn/fzf', { 'dir': '~/source/fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 Plug 'gregsexton/gitv'
 Plug 'modille/groovy.vim'
 Plug 'simnalamburt/vim-mundo'
@@ -193,27 +193,6 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_java_javac_config_file_enabled = 1
-
-Plug 'nobeans/unite-grails'
-Plug 'tacroe/unite-mark'
-
-Plug 'Shougo/unite.vim'
-let g:unite_source_buffer_time_format = '%m/%d %H:%M'
-let g:unite_source_history_yank_enable = 1
-if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts =
-    \ '-i --vimgrep --hidden --ignore ' .
-    \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-    let g:unite_source_grep_recursive_opt = ''
-elseif executable('ack-grep')
-    let g:unite_source_grep_command = 'ack-grep'
-    let g:unite_source_grep_default_opts = '-H -i --nocolor --nogroup'
-    let g:unite_source_grep_recursive_opt = ''
-endif
-if executable('wcfind')
-    let g:unite_source_find_command = 'wcfind'
-endif
 
 Plug 'vim-scripts/vcscommand.vim'
 
@@ -261,21 +240,6 @@ Plug 'guns/xterm-color-table.vim'
 
 call plug#end()
 " /vim-plug
-
-if exists('g:unite_source_grep_command')
-call unite#custom#profile('default', 'context', {
-\    'ignorecase': 1,
-\    'start_insert': 1,
-\ })
-call unite#custom_source('file,file_rec,file_rec/async,grep',
-\    'ignore_pattern', join([
-\       '\.git/',
-\       '\.svn/',
-\       'target/',
-\       '.work/',
-\    ], '\|'))
-call unite#filters#matcher_default#use(['matcher_context'])
-endif
 
 filetype indent off
 "filetype plugin on
