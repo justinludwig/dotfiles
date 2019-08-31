@@ -257,16 +257,3 @@ if has('gui_running')
     set guioptions-=m   " Get rid of menu    "
     set ttyfast
 endif
-
-"set runtimepath^=~/.vim/bundle/*
-
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_dotfiles = 0
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_open_multiple_files = 'r'
-
-let g:EasyGrepReplaceWindowMode = 2
-
