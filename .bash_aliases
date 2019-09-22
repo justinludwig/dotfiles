@@ -8,14 +8,12 @@ test -e /usr/share/powerline && . /usr/share/powerline/bindings/bash/powerline.s
 test -e ~/bin && export PATH=$PATH:~/bin
 test -e ~/.local/bin && export PATH=$PATH:~/.local/bin
 
-# start ssh-agent if not already running
-test "$SSH_AUTH_SOCK" || eval $(ssh-agent) >/dev/null
-# setup just-in-time ssh-add if no identities yet available
-ssh-add -l >/dev/null 2>&1 \
-    || alias ssh='ssh-add -l >/dev/null || ssh-add && unalias ssh; ssh'
+# add 'AddKeysToAgent yes' to .ssh/config in place of ssh-agent hijinks
+
 # start gpg-agent if not already running
 pgrep gpg-agent >/dev/null || eval $(gpg-agent --daemon) >/dev/null
 
+# add to .bashrc:
 shopt -s cmdhist
 HISTSIZE=100000
 HISTFILESIZE=100000
@@ -24,16 +22,7 @@ HISTIGNORE='exit'
 PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 set -o vi
-
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-bind '"\e[C": forward-char'
-bind '"\e[D": backward-char'
-
 shopt -s globstar 2>/dev/null
-bind "set completion-ignore-case on"
-bind "set completion-map-case on"
-bind "set show-all-if-ambiguous on"
 
 alias la='ls -latrh'
 alias lsd='ls -ldh'
