@@ -46,6 +46,10 @@ fi
 e() { urxvtcd -e nvim "$@" & true; }
 r() { urxvtcd -e nvim -R --noplugin "$@" & true; }
 
+export PYENV_ROOT=$HOME/source/pyenv
+test -e $PYENV_ROOT/bin && export PATH=$PYENV_ROOT/bin:$PATH
+command -v pyenv 1>/dev/null 2>&1 && eval "$(pyenv init -)" && eval "$(pyenv virtualenv-init -)"
+
 #export PYTHONPATH="/home/justin/projects/powerline-svnstatus:$PYTHONPATH"
 
 # add to .bashrc:
