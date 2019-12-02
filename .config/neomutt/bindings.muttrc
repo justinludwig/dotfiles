@@ -1,10 +1,27 @@
 # vim: filetype=muttrc
 
-# Ctrl-k - Previous Mailbox
-bind index,pager \Ck sidebar-prev
-# Ctrl-j - Next Mailbox
-bind index,pager \Cj sidebar-next
-# Ctrl-o - Open Highlighted Mailbox
-bind index,pager \Co sidebar-open
+# vim-like keybindings
+bind index,pager k previous-entry
+bind index,pager j next-entry
+bind index,pager g noop
+bind index,pager \Cu half-up
+bind index,pager \Cd half-down
+bind pager gg top
+bind index gg first-entry
+bind pager G bottom
+bind index G last-entry
 
-macro index,pager H "<view-attachments><search>html<enter><view-mailcap><exit>"
+# sidebar navigation
+bind index,pager <down> sidebar-next
+bind index,pager <up> sidebar-prev
+bind index,pager <right> sidebar-open
+
+# global index and pager shortcuts
+bind index,pager @ compose-to-sender
+bind index,pager R group-reply
+bind index <tab> sync-mailbox
+bind index <space> collapse-thread
+
+macro index,pager H \
+  "<view-attachments><search>html<enter><view-mailcap><exit>" \
+  "view message as html"

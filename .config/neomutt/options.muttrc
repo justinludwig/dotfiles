@@ -2,8 +2,12 @@
 
 set abort_noattach=ask-yes
 set attribution="On %D, %n wrote:"
+set autoedit
+set crypt_verify_sig
 set date_format="%a, %b %d, %Y at %I:%M %p %Z"
+set edit_headers
 set folder="~/mail"
+set forward_decrypt=no
 set forward_format="Fw: %s"
 set header_cache="~/.cache/mutt/headers"
 set history_file="~/.cache/mutt/history"
@@ -15,6 +19,8 @@ set mailcap_path="~/.config/neomutt/mailcap:/etc/mailcap"
 set mask="!^\\.[^.]"
 set mbox_type=Maildir
 set move=no
+set pgp_sign_as=0xAFE4212AA8883A14
+set pgp_use_gpg_agent
 set realname="Justin Ludwig"
 set reverse_alias
 set reverse_name
@@ -26,6 +32,9 @@ set sidebar_next_new_wrap
 set sidebar_short_path
 set sidebar_sort_method=path
 set sidebar_visible
+set sort=threads
+# set sort_browser=date
+set sort_aux=reverse-last-date-received
 set strict_threads
 set text_flowed
 set thread_received

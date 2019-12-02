@@ -8,3 +8,28 @@ set spoolfile="+pst/INBOX"
 set trash="+pst/Trash"
 
 alternates justin@pitchstonetechnology.com justin@pitchstonehealth.com
+
+unmy_hdr BCC X-PGP-Key
+
+set crypt_autosign=no
+set crypt_replyencrypt=no
+set crypt_replysign=no
+set crypt_replysignencrypted=no
+
+macro index,pager J \
+  "<enter-command>set my_old_resolve=\$resolve noresolve<enter>\
+  <tag-prefix><clear-flag>n<enter-command>set resolve=\$my_old_resolve<enter>\
+  <save-message>+pst/Junk<enter>" \
+  "mark as read and move to junk folder"
+
+macro index,pager A \
+  "<enter-command>set confirmappend=no delete=yes<enter>\
+  <tag-prefix><save-message>+pst/Archive<enter>\
+  <sync-mailbox><enter-command>set confirmappend=yes delete=ask-yes<enter>" \
+  "move tagged messages to the archive"
+
+macro index,pager I \
+  "<enter-command>set confirmappend=no delete=yes<enter>\
+  <tag-prefix><save-message>+pst/INBOX<enter>\
+  <sync-mailbox><enter-command>set confirmappend=yes delete=ask-yes<enter>" \
+  "move tagged messages to the inbox"
