@@ -1,0 +1,36 @@
+# vim: filetype=muttrc
+
+set from="justin@arcemtene.com"
+set mbox="+arx/Archive"
+set record="+arx/Sent"
+set postponed="+arx/Drafts"
+set spoolfile="+arx/INBOX"
+set trash="+arx/Trash"
+
+alternates justin@arcemtene.com justin@furemcape.org
+
+my_hdr BCC: justin@arcemtene.com
+my_hdr X-PGP-Key: https://www.arcemtene.com/keys/justin.asc
+
+set crypt_autosign
+set crypt_replyencrypt
+set crypt_replysign
+set crypt_replysignencrypted
+
+macro index,pager J \
+  "<enter-command>set confirmappend=no delete=yes<enter>\
+  <tag-prefix><save-message>+arx/Junk<enter>\
+  <sync-mailbox><enter-command>set confirmappend=yes delete=ask-yes<enter>" \
+  "move tagged messages to the junk folder"
+
+macro index,pager A \
+  "<enter-command>set confirmappend=no delete=yes<enter>\
+  <tag-prefix><save-message>+arx/Archive<enter>\
+  <sync-mailbox><enter-command>set confirmappend=yes delete=ask-yes<enter>" \
+  "move tagged messages to the archive"
+
+macro index,pager I \
+  "<enter-command>set confirmappend=no delete=yes<enter>\
+  <tag-prefix><save-message>+arx/INBOX<enter>\
+  <sync-mailbox><enter-command>set confirmappend=yes delete=ask-yes<enter>" \
+  "move tagged messages to the inbox"

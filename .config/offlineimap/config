@@ -1,11 +1,30 @@
 [general]
-accounts = ldwg, pst
+accounts = arx, ldwg, librem, pst
 metadata = ~/.cache/offlineimap
 pythonfile = ~/.config/offlineimap/offlineimap.py
 
 
 [DEFAULT]
-status_backend = sqlite
+#status_backend = sqlite
+
+
+[Account arx]
+remoterepository = arx_remote
+localrepository = arx_local
+
+[Repository arx_remote]
+type = IMAP
+remotehost = imap.arcemtene.com
+remoteuser = justin@arcemtene.com
+remotepasseval = get_pass("arx/imap")
+ssl = yes
+sslcacertfile = OS-DEFAULT
+ssl_version = tls1_2
+
+[Repository arx_local]
+type = Maildir
+localfolders = ~/mail/arx
+restoreatime = no
 
 
 [Account ldwg]
@@ -19,11 +38,30 @@ remoteuser = justin
 remotepasseval = get_pass("ldwg/imap")
 ssl = yes
 sslcacertfile = OS-DEFAULT
-ssl_version = tls1_2
+ssl_version = tls1_1
 
 [Repository ldwg_local]
 type = Maildir
 localfolders = ~/mail/ldwg
+restoreatime = no
+
+
+[Account librem]
+remoterepository = librem_remote
+localrepository = librem_local
+
+[Repository librem_remote]
+type = IMAP
+remotehost = imap.librem.one
+remoteuser = justinomadic@librem.one
+remotepasseval = get_pass("me/libremone")
+ssl = yes
+sslcacertfile = OS-DEFAULT
+ssl_version = tls1_2
+
+[Repository librem_local]
+type = Maildir
+localfolders = ~/mail/librem
 restoreatime = no
 
 

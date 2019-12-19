@@ -4,6 +4,7 @@ source ~/.config/neomutt/headers.muttrc
 source ~/.config/neomutt/bindings.muttrc
 source ~/.config/neomutt/ldwg.muttrc
 
+folder-hook arx/* source ~/.config/neomutt/arx.muttrc
 folder-hook gmail/* source ~/.config/neomutt/gmail.muttrc
 folder-hook ldwg/* source ~/.config/neomutt/ldwg.muttrc
 folder-hook librem/* source ~/.config/neomutt/librem.muttrc
