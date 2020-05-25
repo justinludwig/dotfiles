@@ -38,7 +38,7 @@ remoteuser = justin
 remotepasseval = get_pass("ldwg/imap")
 ssl = yes
 sslcacertfile = OS-DEFAULT
-ssl_version = tls1_1
+ssl_version = tls1_2
 
 [Repository ldwg_local]
 type = Maildir
