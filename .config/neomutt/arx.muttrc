@@ -7,7 +7,7 @@ set postponed="+arx/Drafts"
 set spoolfile="+arx/INBOX"
 set trash="+arx/Trash"
 
-alternates justin@arcemtene.com justin@furemcape.org
+alternates justin@arcemtene.com justin@furemcape.org justin@custodib.us
 
 my_hdr BCC: justin@arcemtene.com
 my_hdr X-PGP-Key: https://www.arcemtene.com/keys/justin.asc
