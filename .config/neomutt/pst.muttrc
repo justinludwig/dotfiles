@@ -17,10 +17,10 @@ set crypt_replysign=no
 set crypt_replysignencrypted=no
 
 macro index,pager J \
-  "<enter-command>set my_old_resolve=\$resolve noresolve<enter>\
-  <tag-prefix><clear-flag>n<enter-command>set resolve=\$my_old_resolve<enter>\
-  <save-message>+pst/Junk<enter>" \
-  "mark as read and move to junk folder"
+  "<enter-command>set confirmappend=no delete=yes<enter>\
+  <tag-prefix><save-message>+pst/Junk<enter>\
+  <sync-mailbox><enter-command>set confirmappend=yes delete=ask-yes<enter>" \
+  "move tagged messages to the junk folder"
 
 macro index,pager A \
   "<enter-command>set confirmappend=no delete=yes<enter>\

@@ -42,7 +42,11 @@ set tmpdir="~/.cache/mutt/tmp"
 set use_envelope_from
 set wait_key=no
 
-mailboxes `find ~/mail -mindepth 1 -maxdepth 2 -type d -printf "+'%P' "`
+named-mailboxes arx +arx/INBOX
+named-mailboxes ldwg +ldwg/INBOX
+named-mailboxes librem +librem/INBOX
+named-mailboxes pst +pst/INBOX
+mailboxes `find ~/mail -mindepth 2 -maxdepth 2 -type d -printf "+'%P' "`
 
 auto_view text/html
 alternative_order text/plain text/enriched text/html
